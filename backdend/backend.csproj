@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Services\" />
+    <None Remove="Repositories\" />
+    <None Remove="Entities\" />
+    <None Remove="Models\" />
+    <None Remove="Dtos\" />
+    <None Remove="DbContext\" />
+    <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Extensions\" />
+    <None Remove="Mappings\" />
+    <None Remove="Backend.Unit.Tests\obj\Backend.Unit.Tests.csproj.nuget.g.props" />
+    <None Remove="Backend.Unit.Tests\obj\Backend.Unit.Tests.csproj.nuget.g.targets" />
+    <None Remove="Backend.Unit.Tests\obj\project.nuget.cache" />
+    <None Remove="Backend.Unit.Tests\obj\Debug\net5.0\Backend.Unit.Tests.assets.cache" />
+    <None Remove="Backend.Unit.Tests\obj\Debug\net5.0\Backend.Unit.Tests.csproj.AssemblyReference.cache" />
+    <None Remove="Backend.Unit.Tests\obj\Debug\net5.0\Backend.Unit.Tests.csproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.7" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Models\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="DbContext\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Mappings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Backend.Unit.Tests\UnitTest1.cs" />
+    <Compile Remove="Backend.Unit.Tests\TestBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Backend.Unit.Tests\obj\project.assets.json" />
+    <Content Remove="Backend.Unit.Tests\obj\Backend.Unit.Tests.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+</Project>
