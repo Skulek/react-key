@@ -71,7 +71,6 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-        return false;
       });
   };
 
@@ -82,7 +81,7 @@ function App() {
         sucessMethod();
       })
       .catch((error) => {
-        // handle error
+        console.log(error);
       });
   };
 
