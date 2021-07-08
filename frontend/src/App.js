@@ -46,19 +46,32 @@ function App() {
 
   useEffect(() => {
     fetchData();
-    return () => {};
   }, []);
 
   const fetchData = () => {
+    console.log("call method");
     axios
       .get("https://localhost:5001/keyvaluepair")
       .then((response) => {
-        console.log(response.data);
         setKeyValuePairs(response.data);
       })
       .catch((error) => {
         // handle error
         console.log(error);
+      });
+  };
+
+  const deleteData = (kvpId, sucessMethod) => {
+    axios
+      .delete(`https://localhost:5001/keyvaluepair/${kvpId}`)
+      .then(() => {
+        const newPeople = keyValuePairs.filter((kvp) => kvp.id !== kvpId);
+        console.log(newPeople);
+        setKeyValuePairs(newPeople);
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
       });
   };
 
@@ -79,6 +92,10 @@ function App() {
     clearForm();
   };
 
+  const handleDelete = (keyValuePair) => {
+    deleteData(keyValuePair.id);
+  };
+
   return (
     <div className="App">
       <Container fixed>
@@ -93,9 +110,7 @@ function App() {
                   </span>
                   <DeleteIcon
                     className={classes.baseIcon}
-                    onClick={() => {
-                      console.log(keyValuePair.value);
-                    }}
+                    onClick={() => handleDelete(keyValuePair)}
                   />
                 </li>
               );

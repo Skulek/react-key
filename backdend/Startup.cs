@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 
 namespace backend
 {
@@ -31,13 +32,12 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddCors(options => {
-                options.AddPolicy("myPolicy", builder => {
-                    builder.AllowAnyHeader();
-                    builder.AllowAnyMethod();
-                    builder.AllowAnyOrigin();
-                });
-            });
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader().AllowAnyMethod();
+            }));
 
             services.AddDbContext<KeyValuePairDbContext>(options => options.UseInMemoryDatabase("KVPDb"), ServiceLifetime.Singleton);
 
@@ -56,11 +56,12 @@ namespace backend
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors("CorsPolicy");
+
+            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 

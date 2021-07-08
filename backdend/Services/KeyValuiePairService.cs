@@ -30,7 +30,7 @@ namespace backend.Services
 
         public bool DeleteKeyValuePair(int kvpId)
         {
-            throw new NotImplementedException();
+            return keyValuePairRepository.DeleteKeyValuePair(kvpId);
         }
 
         public KeyValuePairDto UpdateKeyValuePair(KeyValuePairDto keyValuePair)

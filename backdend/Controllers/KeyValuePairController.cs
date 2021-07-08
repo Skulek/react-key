@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace backend.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [ApiController]
     [Route("[controller]")]
-    [EnableCors("myPolicy")]
     public class KeyValuePairController : ControllerBase
     {
         private readonly IKeyValuePairService keyValuePairService;
@@ -32,6 +32,14 @@ namespace backend.Controllers
         public IActionResult PostData(KeyValuePairDto value)
         { 
             var status = keyValuePairService.InsertKeyValuePair(value);
+            return status ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        [Route("{kvpId}")]
+        [HttpDelete]
+        public IActionResult DeleteData(int kvpId)
+        {
+            var status = keyValuePairService.DeleteKeyValuePair(kvpId);
             return status ? Ok() : StatusCode(StatusCodes.Status500InternalServerError);
         }
     }
