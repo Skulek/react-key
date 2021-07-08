@@ -61,7 +61,7 @@ function App() {
       });
   };
 
-  const deleteData = (kvpId, sucessMethod) => {
+  const deleteData = (kvpId) => {
     axios
       .delete(`https://localhost:5001/keyvaluepair/${kvpId}`)
       .then(() => {
