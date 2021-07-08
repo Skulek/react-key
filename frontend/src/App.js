@@ -49,11 +49,12 @@ function App() {
   }, []);
 
   const fetchData = () => {
-    console.log("call method");
     axios
       .get("https://localhost:5001/keyvaluepair")
       .then((response) => {
-        setKeyValuePairs(response.data);
+        if (response.status === 200) {
+          setKeyValuePairs(response.data);
+        }
       })
       .catch((error) => {
         // handle error
@@ -64,10 +65,11 @@ function App() {
   const deleteData = (kvpId) => {
     axios
       .delete(`https://localhost:5001/keyvaluepair/${kvpId}`)
-      .then(() => {
-        const newPeople = keyValuePairs.filter((kvp) => kvp.id !== kvpId);
-        console.log(newPeople);
-        setKeyValuePairs(newPeople);
+      .then((response) => {
+        if (response.status === 200) {
+          const newPeople = keyValuePairs.filter((kvp) => kvp.id !== kvpId);
+          setKeyValuePairs(newPeople);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -78,7 +80,9 @@ function App() {
     axios
       .post("https://localhost:5001/keyvaluepair", data)
       .then((response) => {
-        sucessMethod();
+        if (response.status === 200) {
+          sucessMethod();
+        }
       })
       .catch((error) => {
         console.log(error);
